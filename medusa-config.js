@@ -54,6 +54,14 @@ const plugins = [
   // },
 ];
 
+const STORAGE_CONFIG = process.env.STORAGE_CONFIG ? JSON.parse(process.env.STORAGE_CONFIG) : null
+if (STORAGE_CONFIG != null) {
+  plugins.push({
+    resolve: `medusa-file-minio`,
+    options: STORAGE_CONFIG,
+  })
+}
+
 module.exports = {
   projectConfig: {
     jwt_secret: process.env.JWT_SECRET,
